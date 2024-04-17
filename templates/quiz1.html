@@ -1,5 +1,16 @@
 {% extends "layout.html" %}
-
 {% block content %}
-    <h1> hi quiz</h1>
+<div>
+    <h2>{{ question.question }}</h2>
+    <form method="post">
+        {% for option in question.options %}
+        <input type="radio" id="option{{ loop.index }}" name="option" value="{{ option }}" {% if option == user_answer %}checked{% endif %}>
+        <label for="option{{ loop.index }}">{{ option }}</label><br>
+        {% endfor %}
+        <input type="submit" value="Next Question">
+    </form>
+    {% if question_id == quiz_questions|length %}
+    <a href="{{ url_for('quiz_result') }}">View Results</a>
+    {% endif %}
+</div>
 {% endblock %}

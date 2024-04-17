@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+    <h2>Quiz Results</h2>
+    <p>Your score: {{ score }} out of {{ total_questions }}</p>
+    <ol>
+        {% for result in quiz_results %}
+        <li>
+            {{ result.question }}
+            {% if result.is_correct %}
+            Correct
+            {% else %}
+            Incorrect. Correct answer: {{ result.correct_answer }}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock %}

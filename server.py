@@ -39,6 +39,39 @@ macros= [
     "image": "https://domf5oio6qrcr.cloudfront.net/medialibrary/7412/285f8582-c1c9-4d28-9174-7d77f34dd548.jpg"
   }
 ]
+quiz_questions = [
+  {
+    "id": 1,
+    "question": "How much protein is generally recommended per kilogram of body weight for those involved in intense bodybuilding training?",
+    "options": ["0.8-1.0 g", "1.6 - 2.2 g", "3.0 - 3.5", "2.5 - 3.0"],
+    "answer": "1.6 - 2.2 g"
+  },
+  {
+    "id": 2,
+    "question": "What is the primary role of carbohydrates in a bodybuilding diet?",
+    "options": ["To enhance flavor in meals", "To provide a concentrated source of energy", "To serve as the body's preferred source of energy", "To promote fat storage for energy reserves"],
+    "answer": "To serve as the body's preferred source of energy"
+  },
+  {
+    "id": 3,
+    "question": "Which types of fats are considered healthy and should be included in a bodybuilder's diet?",
+    "options": ["Saturated fats from processed foods", "Trans fats from deep-fried foods", "Omega-3 fatty acids from sources like fatty fish and flaxseeds", "Only animal fats for hormone production"],
+    "answer": "Omega-3 fatty acids from sources like fatty fish and flaxseeds"
+  },
+  {
+    "id": 4,
+    "question": "What is the role of dietary fats in relation to hormone production for bodybuilding?",
+    "options": ["Dietary fats decrease hormone production and should be minimized.", "They have no impact on hormone production but are essential for flavor.", "Fats are necessary for the absorption of water-soluble vitamins like B and C.", "Fats are vital for the synthesis of hormones, including testosterone, which is essential for muscle growth."],
+    "answer": "Fats are vital for the synthesis of hormones, including testosterone, which is essential for muscle growth."
+  },
+  {
+    "id": 5,
+    "question": "How do macronutrient needs typically change during the bulking and cutting phases of bodybuilding?",
+    "options": ["During bulking, increase proteins and decrease carbohydrates and fats.", "In both phases, keep protein high; during bulking, increase carbohydrates and fats; during cutting, decrease carbohydrates and slightly reduce fats.", "During cutting, increase carbohydrates and fats to ensure energy for intense workouts.", "Macronutrient needs do not change; only caloric intake should be adjusted."],
+    "answer": "In both phases, keep protein high; during bulking, increase carbohydrates and fats; during cutting, decrease carbohydrates and slightly reduce fats."
+  }
+]
+user_answers = [None]*5
 
 @app.route('/')
 def welcome():
@@ -133,19 +166,55 @@ def calculate_macros():
     return render_template('calculate.html')
 
 
-@app.route('/quiz/<int:question_id>')
+@app.route('/quiz/<int:question_id>', methods=['GET', 'POST'])
 def quiz(question_id):
-    
-    return render_template('quiz1.html', question_id=question_id)
+    global user_answers
 
-# @app.route('/quiz_result', methods=['POST'])
-# def quiz_result():
-#     # Process quiz answers here, e.g., calculate scores
-#     # Assume answers are posted as form data
-#     # Redirect to a result page with the score
-#     score = calculate_score(request.form)
-#     return render_template('quiz_result.html', score=score)
+    # Get the current question
+    question = next((q for q in quiz_questions if q['id'] == question_id), None)
 
+    if question is None:
+        return "Question not found", 404
+
+    if request.method == 'POST':
+        # Store the user's answer
+        user_answer = request.form.get('option')
+        user_answers[question_id - 1] = user_answer
+
+        # Check if this is the last question
+        if question_id == len(quiz_questions):
+            return redirect(url_for('quiz_result'))
+        else:
+            return redirect(url_for('quiz', question_id=question_id + 1))
+
+    # Initialize the user_answers list if it's empty
+    if not user_answers:
+        user_answers = [None] * len(quiz_questions)
+
+    # Render the question
+    return render_template('quiz1.html', question=question, question_id=question_id, user_answer=user_answers[question_id - 1])
+
+@app.route('/quiz_result')
+def quiz_result():
+	global user_answers
+
+	# Calculate the score
+	score = 0
+	quiz_results = []
+	print(user_answers)
+	for i, user_answer in enumerate(user_answers):
+			correct_answer = quiz_questions[i]['answer']
+			is_correct = user_answer == correct_answer
+			if is_correct:
+					score += 1
+			quiz_results.append({
+					'question': quiz_questions[i]['question'],
+					'user_answer': user_answer,
+					'correct_answer': correct_answer,
+					'is_correct': is_correct
+			})
+
+	return render_template('quiz_result.html', score=score, total_questions=len(quiz_questions), quiz_results=quiz_results)
 
 
 if __name__ == '__main__':
