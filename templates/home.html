@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+    .bullet {
+        font-size: larger;
+        color: black;
+    }
+    .navigation {
+        padding-top: 20px;
+    }
+</style>
+<div class="navigation">
+    <h1>→ You can navigate to your topic of interest:</h1>
+    <ul>
+        <li><a href="/learn/1" class="bullet">Proteins</a></li>
+        <li><a href="/learn/2" class="bullet">Carbohydrates</a></li>
+        <li><a href="/learn/3" class="bullet">Fats</a></li>
+    </ul>
+</div>
+
+
+{% endblock %}

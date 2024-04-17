@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'logic.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+<style>
+    .container {
+        width: 90%; 
+        margin: auto; 
+        text-align: left; 
+    }
+    
+    h1 {
+        padding-top: 40px;
+        padding-bottom: 10px;
+    }
+    .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            transition: 0.4s;
+            margin-top: 10px; /* Add space to the top of each accordion button */
+            border-radius: 5px; /* Optional: rounds the corners */
+        }
+
+        /* Change background color of accordion when it's expanded or hovered over */
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+
+        /* Panel styling, hidden by default */
+        .panel {
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            margin-bottom: 10px;
+        }
+        .header {
+            padding-bottom: 15px;
+        }
+        .container{
+            margin-bottom: 42px;
+        }
+        .desc {
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .myths {
+            padding-top: 25px;
+            padding-left: 12px;
+
+        }
+
+        .myth-box {
+            background-color: #eee;
+            padding-top: 10px;
+        }
+</style>
+<div class="container">
+    <h1>{{ lesson.name }}</h1>
+    <div class="row header">
+        <img src="{{ lesson.image }}" alt="{{ lesson.name }}" class="col-11"> 
+    </div>
+    <p class="desc">{{ lesson.summary }}</p>
+    <div class="contain">
+    <button class="accordion">Why {{lesson.name}} Matter</button>
+    <div class="panel">
+        <p>{{lesson.summary}}</p>
+    </div>
+    </div>
+
+    <button class="accordion">Sources of {{lesson.name}}</button>
+    <div class="panel">
+        <p>{{lesson.sources}}</p>
+    </div>
+
+    <button class="accordion">Optimal Intake</button>
+    <div class="panel">
+        <p>{{lesson.intake}}</p>
+    </div>
+
+    <div class="row myths">
+        <div class="col-5 myth-box mr-3">
+                <h3>Common Myths:</h3>
+                <p> {{lesson.myth}}</p>
+        </div>
+
+        <div class="col-6 myth-box">
+            <h3>Context:</h3>
+            <p> {{lesson.context}}</p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+.navbar-t {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-size: large;
+    padding-right: 25px;
+    color: black;
+}
+
+.navbar-title {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-size: x-large;
+    padding-right: 55px;
+    font-weight: bold;
+    color: black;
+}

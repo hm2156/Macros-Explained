@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<style>
+.result-box {
+    background-color: #eee;
+    text-align: center;
+    padding: 20px;
+    margin: 23px; 
+    display: inline-block; 
+}
+
+.result-container {
+    padding-top: 30px;
+}
+
+h4 {
+    font-weight: bold;
+    color: black;
+}
+
+.calories {
+    font-size: 30px;
+    font-weight: bolder;
+    color: cadetblue;
+}
+
+.resultview {
+    padding-top: 12px;
+}
+
+h1 {
+    padding-left: 7px;
+    font-weight: bolder;
+}
+</style>
+<div class="result-container">
+    <h1>Results</h1>
+
+    <div class="row resultview">
+    <div class="result-box col-3">
+        <h4>Maintenance:</h4>
+        <p class="calories">{{ results.maintenance.calories }} cal/day</p>
+        <p>{{ results.maintenance.protein }}g Protein</p>
+        <p>{{ results.maintenance.carbs }}g Carbs</p>
+        <p>{{ results.maintenance.fats }}g Fats</p>
+    </div>
+    <div class="result-box col-3">
+        <h4>Weight Loss:</h4>
+        <p class="calories">{{ results.weight_loss.calories }} cal/day</p>
+        <p>{{ results.weight_loss.protein }}g Protein</p>
+        <p>{{ results.weight_loss.carbs }}g Carbs</p>
+        <p>{{ results.weight_loss.fats }}g Fats</p>
+    </div>
+    <div class="result-box col-3">
+        <h4>Bulking:</h4>
+        <p class="calories">{{ results.bulking.calories }} cal/day</p>
+        <p>{{ results.bulking.protein }}g Protein</p>
+        <p>{{ results.bulking.carbs }}g Carbs</p>
+        <p>{{ results.bulking.fats }}g Fats</p>
+    </div>
+</div>
+<div class="navigation-arrows">
+    <button onclick="window.location.href='/home' " class="arrow-button">&#8592; Lessons</button>
+    <button onclick="window.location.href='/quiz/1'" class="arrow-button">Quiz &#8594;</button>
+</div>
+</div>
+
+
+{% endblock %}
