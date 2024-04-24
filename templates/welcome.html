@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
-
 {% block content %}
 <style>
+		@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
     body {
       text-align: center;
       margin: 0;
@@ -10,27 +12,37 @@
       flex-direction: column;
       justify-content: center;
       height: 80vh;
-      background: #fff;
+      background: #d4e9e2;
+			font-family: 'Open Sans', sans-serif;
+			
     }
     h1 {
       font-size: 48px;
       margin-bottom: 10px;
-      color:lightseagreen;
+      color: #006d77;;
+			font-weight:700;
+			text-transform: uppercase;
+			text-align: left;
     }
     p {
       font-size: 21px;
       margin-bottom: 20px;
+			font-family: 'Poppins';
+			text-align: left;
+			font-weight: 100;
     }
     .button {
       padding: 10px 20px;
       margin: 5px;
       border: none;
-      background-color:lightseagreen;
+      background-color:#006d77;;
       color: white;
       text-transform:initial;
       font-size: 18px;
       cursor: pointer;
       border-radius: 5px;
+			font-family: 'Open Sans', sans-serif;
+			font-weight: 100;
     }
     .button:hover {
       background-color: mediumaquamarine;
@@ -42,7 +54,7 @@
   </style>
 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"> 
 <div class="container">
-    <h1>Master the art of Macronutrients to Achieve Your Dreambody</h1>
+    <h1>Master the  <br> art of <br> Macronutrients </h1>
     <p>Begin your journey to mastering the art of macronutrients for bodybuilding to achieve your goals! Navigate to learn and test your skills!</p>
     <button class="button" onclick="window.location.href='/learn/1'">Start Learning</button>
     <button class="button" onclick="window.location.href='/quiz/1'">Jump to Quiz!</button>
