@@ -2,20 +2,66 @@
 
 {% block content %}
 <style>
-    .bullet {
-        font-size: larger;
-        color: black;
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
+    body {
+        background-color: #d4e9e2; /* Very light gray background */
     }
+
     .navigation {
-        padding-top: 20px;
+        max-width: 600px;
+        margin: 40px auto; /* Centering the navigation */
+        padding: 20px;
+        background-color: #FFFFFF; /* White background */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    }
+
+    .titleNav {
+        font-size: 22px; /* Slightly larger font size */
+        font-family: 'Open Sans', sans-serif;
+        text-transform: capitalize;
+        margin-top: 10px;
+        text-align: center; /* Center-aligned header */
+        margin-bottom: 20px; /* Space below the header */
+    }
+
+    .listHead {
+        list-style-type: none; /* No bullets */
+        padding: 0;
+    }
+
+    .listItem {
+        padding: 10px 0; /* Padding for list items */
+        border-bottom: 1px solid #E1E1E1; /* Light line under each item */
+        font-family: 'Poppins';
+    }
+
+    .listItem:last-child {
+        border-bottom: none; /* No border for the last item */
+    }
+
+    .bullet {
+        text-decoration: none; /* No underline */
+        margin: 8px;
+        color: #006d77; /* Bright link color */
+        display: block; /* Makes the link fill the li */
+        transition: background-color 0.3s, color 0.3s; /* Smooth transitions for hover */
+    }
+
+    .bullet:hover, .bullet:focus {
+        background-color: #0c7b85; /* Background color on hover */
+        color: #FFFFFF; /* White text on hover */
+        text-decoration: none;
+        border-radius: 5px; /* Rounded corners on hover */
     }
 </style>
 <div class="navigation">
-    <h1>→ You can navigate to your topic of interest:</h1>
-    <ul>
-        <li><a href="/learn/1" class="bullet">Proteins</a></li>
-        <li><a href="/learn/2" class="bullet">Carbohydrates</a></li>
-        <li><a href="/learn/3" class="bullet">Fats</a></li>
+    <h1 class="titleNav">You can navigate to your topic of interest:</h1>
+    <ul class="listHead">
+        <li class="listItem"><a href="/learn/1" class="bullet">Proteins</a></li>
+        <li class="listItem"><a href="/learn/2" class="bullet">Carbohydrates</a></li>
+        <li class="listItem"><a href="/learn/3" class="bullet">Fats</a></li>
     </ul>
 </div>
 

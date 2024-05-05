@@ -1,16 +1,10 @@
-.navbar-t {
-    padding-bottom: 10px;
-    padding-top: 10px;
-    font-size: large;
-    padding-right: 25px;
-    color: black;
-}
 
-.navbar-title {
-    padding-bottom: 10px;
-    padding-top: 10px;
-    font-size: x-large;
-    padding-right: 55px;
-    font-weight: bold;
-    color: black;
-}
+.title {
+    font-family:'Poppins';
+    font-size: 19px;
+  }
+  .item {
+    font-family:'Poppins';
+    padding-top: 18px;
+    font-size: 15px;
+  }

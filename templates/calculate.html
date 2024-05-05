@@ -5,21 +5,27 @@
 <script type="text/javascript" src="{{ url_for('static', filename = 'logic.js') }}"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;700&display=swap');
     body {
-        background: #f4f4f4;
-        padding: 20px;
+        background: #d4e9e2;
     }
     .form-container {
         background: white;
         padding: 30px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        max-width: 400px;
+        max-width: 500px;
         margin: 40px auto;
     }
-    h2 {
+    .Goal {
         text-align: center;
-        color: lightseagreen;
+        font-family: 'Roboto';
+        font-size: 35px;
+        font-weight: 400;
+        word-spacing: 2px;
+        color:#006d77;
         margin-bottom: 40px;
     }
     .input-group {
@@ -29,6 +35,7 @@
         display: block;
         margin-bottom: 5px;
         color: #333;
+        font-family: 'Poppins';
     }
     input[type="text"],
     input[type="number"],
@@ -42,18 +49,18 @@
         width: 100%;
         padding: 10px;
         border: none;
-        background-color: lightseagreen;
+        background-color: #006d77;
         color: white;
         border-radius: 5px;
         cursor: pointer;
     }
     button:hover {
-        background-color: mediumturquoise;
+        background-color: #0a8b96;
     }
 
     .navigation-arrows {
         text-align: center;
-        margin-top: 30px; /* Add some space above the navigation arrows */
+        margin-top: 30px; 
     }
 
     .arrow-button {
@@ -68,7 +75,7 @@
     }
 </style>
 <div class="form-container">
-    <h2>START YOUR GOALS TODAY!</h2>
+    <h2 class="Goal">START YOUR GOALS TODAY</h2>
     <form action="{{ url_for('calculate_macros') }}" method="post">
         <div class="input-group">
             <label for="gender">Gender:</label>

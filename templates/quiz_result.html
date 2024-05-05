@@ -1,16 +1,75 @@
 {% extends "layout.html" %}
 {% block content %}
-<div>
-    <h2>Quiz Results</h2>
-    <p>Your score: {{ score }} out of {{ total_questions }}</p>
-    <ol>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    .results-container {
+        font-family: 'Poppins', sans-serif;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 900px;
+        background-color: #f4f4f4;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .results-title {
+        font-family: 'Roboto', sans-serif;
+        color: #006d77;
+        font-size: 34px;
+    }
+
+    .results-summary {
+        font-size: 16px;
+        color: #666;
+    }
+
+    .result-score {
+        color: #006d77;
+        font-size: 22px;
+        font-family: 'Poppins';
+        font-weight: 300;
+    }
+
+    .results-list {
+        padding-left: 20px;
+    }
+
+    .result-item {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .correct-answer {
+        color: #28a745; /* Green for correct */
+
+    }
+
+    .incorrect-answer {
+        color: #dc3545; /* Red for incorrect */
+
+    }
+
+    .corrected {
+        color: #006d77 ;
+       
+    }
+
+
+</style>
+
+<div class="results-container">
+    <h2 class="results-title">Quiz Results</h2>
+    <p class="results-summary">Your score: <span class="result-score" >{{ score }} out of {{ total_questions }} </span></p>
+    <ol class="results-list">
         {% for result in quiz_results %}
-        <li>
+        <li class="result-item">
             {{ result.question }}
             {% if result.is_correct %}
-            Correct
+            <span class="correct-answer">Correct</span>
             {% else %}
-            Incorrect. Correct answer: {{ result.correct_answer }}
+            <span class="incorrect-answer">Incorrect. <br> <span class="corrected">Correct answer: {{ result.correct_answer }}</span></span>
             {% endif %}
         </li>
         {% endfor %}

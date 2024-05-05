@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
 <style>
-		@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
 
     body {
       text-align: center;
@@ -16,48 +16,59 @@
 			font-family: 'Open Sans', sans-serif;
 			
     }
-    h1 {
-      font-size: 48px;
+    .Brand {
+      font-size: 44.5px;
       margin-bottom: 10px;
-      color: #006d77;;
-			font-weight:700;
+      word-spacing: 2px;
+      color: #006d77;
+			font-weight:600;
 			text-transform: uppercase;
+      font-family: 'Open Sans', sans-serif;
+      letter-spacing: -0.5px; 
 			text-align: left;
     }
-    p {
-      font-size: 21px;
+    .ad {
+      font-size: 15px;
       margin-bottom: 20px;
+      margin-right: 20px;
 			font-family: 'Poppins';
 			text-align: left;
 			font-weight: 100;
     }
     .button {
       padding: 10px 20px;
-      margin: 5px;
+      margin: 8px;
       border: none;
       background-color:#006d77;;
       color: white;
       text-transform:initial;
-      font-size: 18px;
+      font-size: 12px;
       cursor: pointer;
       border-radius: 5px;
-			font-family: 'Open Sans', sans-serif;
+      font-family: 'Poppins';
 			font-weight: 100;
     }
     .button:hover {
-      background-color: mediumaquamarine;
+      background-color: #037883;
     }
     .container {
       width: 80%;
       margin: auto;
     }
+    .buttons-container {
+      display: flex;
+      flex-direction: row;
+      align-content: left;
+    }
   </style>
 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"> 
 <div class="container">
-    <h1>Master the  <br> art of <br> Macronutrients </h1>
-    <p>Begin your journey to mastering the art of macronutrients for bodybuilding to achieve your goals! Navigate to learn and test your skills!</p>
+    <h1 class="Brand">Master the  <br> art of <br> Macronutrients </h1>
+    <p class="ad">Begin your journey to mastering the art of macronutrients for bodybuilding to achieve your goals! Navigate to learn and test your skills!</p>
+    <div class="buttons-container">
     <button class="button" onclick="window.location.href='/learn/1'">Start Learning</button>
     <button class="button" onclick="window.location.href='/quiz/1'">Jump to Quiz!</button>
+  </div>
 </div>
     
 

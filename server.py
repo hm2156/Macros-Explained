@@ -90,8 +90,16 @@ def learn(lesson_id):
     lesson_data = next((lesson for lesson in macros if int(lesson['id']) == lesson_id), None)
 
     if lesson_data is None:
-       
         return "Lesson not found", 404
+  
+    # Calculate the next_id if possible
+    current_index = macros.index(lesson_data)
+    if current_index + 1 < len(macros):
+        next_id = macros[current_index + 1]['id']
+    else:
+        next_id = None  # This means it's the last lesson
+
+    lesson_data['next_id'] = next_id  # Add next_id to the lesson data
 
     return render_template('learn.html', lesson=lesson_data)
 
@@ -120,9 +128,12 @@ def calculate_macros():
             'very_active': 1.9
         }
         activity_multiplier = activity_levels.get(activity, 1.2)
+        bulk_multiplier = 1.15
+        cut_multipler = 0.85
 
         # Total Daily Energy Expenditure (TDEE)
         tdee = round(bmr * activity_multiplier)
+
 
         # Macronutrient distribution ratios
         protein_ratio = 0.3
@@ -135,8 +146,8 @@ def calculate_macros():
         carbs = round((tdee * carb_ratio) / 4, 1)
 
         # Adjustments for goal
-        weight_loss_calories = round(tdee * 0.85)
-        bulking_calories = round(tdee * 1.15)
+        weight_loss_calories = round(tdee * cut_multipler)
+        bulking_calories = round(tdee * bulk_multiplier)
 
         # Results dictionary
         results = {
@@ -148,13 +159,13 @@ def calculate_macros():
             },
             'weight_loss': {
                 'calories': weight_loss_calories,
-                'protein': protein, 
+                'protein': round(protein * 0.85, 1), 
                 'carbs': round(carbs * 0.85, 1),
                 'fats': round(fat * 0.85, 1)
             },
             'bulking': {
                 'calories': bulking_calories,
-                'protein': protein,  
+                'protein': round(protein * 1.15, 1),  
                 'carbs': round(carbs * 1.15, 1),
                 'fats': round(fat * 1.15, 1)
             }

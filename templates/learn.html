@@ -7,18 +7,30 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
+
+
+    body {
+        background-color: #d4e9e2;
+    }
     .container {
         width: 90%; 
         margin: auto; 
         text-align: left; 
     }
     
-    h1 {
+    .lessonTitle {
         padding-top: 40px;
+        font-family: 'Roboto';
         padding-bottom: 10px;
     }
     .accordion {
             background-color: #eee;
+            font-family: 'Roboto';
+          
+            font-size: 17px;
             color: #444;
             cursor: pointer;
             padding: 18px;
@@ -38,7 +50,11 @@
 
         /* Panel styling, hidden by default */
         .panel {
-            background-color: white;
+            background-color: #d4e9e2;
+            padding-top: 10px;
+            font-family: 'Poppins';
+            font-weight: 200;
+            font-size: 15px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.2s ease-out;
@@ -52,6 +68,7 @@
         }
         .desc {
             font-size: large;
+            font-family: 'Poppins';
             font-weight: bold;
         }
 
@@ -62,14 +79,52 @@
         }
 
         .myth-box {
-            background-color: #eee;
+            background-color: #006d77;
+            border-radius: 8px;
+            color: #eee;
             padding-top: 10px;
         }
+
+        .macroImg {
+            border-radius: 40px;
+        }
+
+        .myth-title {
+            font-family: 'Roboto';
+            font-size: 25px;
+
+        }
+
+        .myth-desc {
+            font-family: 'Poppins';
+            font-weight: 100;
+            font-size: 14px;
+        }
+
+        .next-lesson {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+        font-size: 24px;
+        color: #006d77;
+        text-decoration: none;
+        margin-top: 40px;
+        font-family: 'Roboto';
+        background-color: #eef4f7;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .next-lesson:hover {
+        background-color: #ccc;
+        text-decoration: underline;
+    }
+
 </style>
 <div class="container">
-    <h1>{{ lesson.name }}</h1>
+    <h1 class="lessonTitle">{{ lesson.name }}</h1>
     <div class="row header">
-        <img src="{{ lesson.image }}" alt="{{ lesson.name }}" class="col-11"> 
+        <img src="{{ lesson.image }}" alt="{{ lesson.name }}" class="col-8 macroImg"> 
     </div>
     <p class="desc">{{ lesson.summary }}</p>
     <div class="contain">
@@ -91,15 +146,19 @@
 
     <div class="row myths">
         <div class="col-5 myth-box mr-3">
-                <h3>Common Myths:</h3>
-                <p> {{lesson.myth}}</p>
+                <h3 class="myth-title">Common Myths:</h3>
+                <p class="myth-dec"> {{lesson.myth}}</p>
         </div>
 
         <div class="col-6 myth-box">
-            <h3>Context:</h3>
-            <p> {{lesson.context}}</p>
+            <h3 class="myth-title">Context:</h3>
+            <p class="myth-dec"> {{lesson.context}}</p>
         </div>
     </div>
-
+    {% if lesson.next_id %}
+        <a href="{{ url_for('learn', lesson_id=lesson.next_id) }}" class="next-lesson">Next Lesson →</a>
+    {% else %}
+        <a href="/quiz/1" class="next-lesson">Lessons Completed! Take the Quiz →</a>
+    {% endif %}
 </div>
 {% endblock %}
