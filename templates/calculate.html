@@ -9,7 +9,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;700&display=swap');
     body {
-        background: #d4e9e2;
+        background: #FAFAFCff;
     }
     .form-container {
         background: white;
@@ -68,14 +68,64 @@
         color: white;
         border: none;
         padding: 10px 20px;
-        margin: 0 10px; /* Space between buttons */
+        margin: 0 10px; 
         font-size: 16px;
         cursor: pointer;
         border-radius: 5px;
     }
+    img {
+        max-width: 120%;
+        height: auto;
+        padding-right: 70px;
+    }
+    .gif-contain {
+        display: flex;
+        flex-direction: row;
+        justify-content: center; 
+        align-items: center; 
+        flex-wrap: nowrap;
+        padding-top: 50px;
+    }
+    .gif-title {
+        margin-bottom: 10px;
+        font-family: 'Roboto';
+        align-self: center;
+        font-size: 34px;
+        color: #006d77;
+    }
+    .gif-mini {
+        display: flex;
+        flex-direction: column;
+    }
+    .Brand {
+      font-size: 45.5px;
+      margin-bottom: 10px;
+      word-spacing: 2px;
+      color: #006d77;
+     font-weight:300;
+     text-transform: uppercase;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: -0.5px; 
+        text-align: left;
+        padding-top: 50px;
+    }
+    .ad {
+      font-size: 18px;
+      margin-bottom: 20px;
+      margin-right: 20px;
+    font-family: 'Poppins';
+    text-align: left;
+    font-weight: 100;
+    }
 </style>
+
+<div class="gif-contain">
+    <div class="gif-mini">
+    <h1 class="Brand">Customize Your <br> MACROS today</h1>
+    <p class="ad"> →  fill this form now </p>
+    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjZyYXF6cTBoODIwOHh1dXpjc2hyaDkwanE3YWw3cDZieWpzeWZxZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KGTVzjIt4kahjIK9Vs/giphy.gif" alt="Descriptive Text of What the GIF Shows">
+</div>
 <div class="form-container">
-    <h2 class="Goal">START YOUR GOALS TODAY</h2>
     <form action="{{ url_for('calculate_macros') }}" method="post">
         <div class="input-group">
             <label for="gender">Gender:</label>
@@ -112,7 +162,7 @@
         <button type="submit">OK</button>
     </form>
 </div>
-
+</div>
 
 
 

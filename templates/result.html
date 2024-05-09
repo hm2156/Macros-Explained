@@ -5,19 +5,22 @@
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+    body {
+        background-color: #d4e9e2;
+    }
     .result-container {
-        font-family: 'Poppins'; /* Sets Poppins as the primary font for text */
+        font-family: 'Poppins'; 
         background-color: #FFFFFF;
         padding: 50px;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         max-width: 800px;
-        margin: 20px auto;
+        margin: 90px auto;
         text-align: center;
     }
 
     .resTitle {
-        font-family: 'Roboto', sans-serif; /* Ensures headings use Roboto */
+        font-family: 'Roboto', sans-serif; 
         color: #006d77;
         font-size: 40px;
         margin-bottom: 30px;
@@ -28,21 +31,26 @@
         padding: 20px;
         margin: 10px;
         display: inline-block;
-        width: 350px; /* Fixed width for alignment */
+        width: 450px; 
         border-radius: 5px;
     }
 
     h4 {
-        font-family: 'Roboto', sans-serif; /* Ensures subheadings use Roboto */
+        font-family: 'Roboto', sans-serif; 
         font-size: 21px;
-        color: #006d77; /* Matching theme color */
+        color: #006d77; 
     }
 
     .calories {
-        font-size: 24px;
-        font-family: 'Roboto', sans-serif; /* Ensures calorie info uses Roboto for emphasis */
-        color: #dc6601; 
+        font-size: 28px;
+      margin-bottom: 20px;
+        margin-right: 20px;
+        font-family: 'Poppins';
+        text-align: left;
+        font-weight: 100;
+        color:  forestgreen; 
         margin: 5px 0;
+        
     }
 
     p {
@@ -80,19 +88,20 @@
     <h1 class="resTitle">Results</h1>
 
     <div class="resultview row">
-        <div class="result-box col-3">
-            <h4>Maintenance:</h4>
-            <p class="calories">{{ results.maintenance.calories }} cal/day</p>
-            <p>{{ results.maintenance.protein }}g Protein</p>
-            <p>{{ results.maintenance.carbs }}g Carbs</p>
-            <p>{{ results.maintenance.fats }}g Fats</p>
-        </div>
+  
         <div class="result-box col-3">
             <h4>Weight Loss:</h4>
             <p class="calories">{{ results.weight_loss.calories }} cal/day</p>
             <p>{{ results.weight_loss.protein }}g Protein</p>
             <p>{{ results.weight_loss.carbs }}g Carbs</p>
             <p>{{ results.weight_loss.fats }}g Fats</p>
+        </div>
+        <div class="result-box col-3">
+            <h4>Maintenance:</h4>
+            <p class="calories">{{ results.maintenance.calories }} cal/day</p>
+            <p>{{ results.maintenance.protein }}g Protein</p>
+            <p>{{ results.maintenance.carbs }}g Carbs</p>
+            <p>{{ results.maintenance.fats }}g Fats</p>
         </div>
         <div class="result-box col-3">
             <h4>Bulking:</h4>

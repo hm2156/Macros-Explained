@@ -14,4 +14,8 @@ $(document).ready(function() {
         // Optionally, toggle the 'active' class to highlight the accordion header
         $(this).toggleClass('active');
     });
+
+
+    
 });
+
