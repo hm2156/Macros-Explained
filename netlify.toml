@@ -1,8 +1,8 @@
 [build]
-  functions = "functions"
   publish = "static"
+  functions = "functions"
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/server"
+  to = "/layout.html"
   status = 200
