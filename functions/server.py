@@ -232,15 +232,15 @@ def quiz_result():
 
 
 def handler(event, context):
-    from werkzeug.serving import run_simple
-    from werkzeug.wsgi import DispatcherMiddleware
-    from werkzeug.middleware.proxy_fix import ProxyFix
     from werkzeug.middleware.dispatcher import DispatcherMiddleware
+    from werkzeug.serving import run_simple
 
     app.wsgi_app = DispatcherMiddleware(app)
-    app.wsgi_app = ProxyFix(app.wsgi_app)
 
-    return run_simple('0.0.0.0', int(os.environ.get('PORT', 5000)), app)
+    def run(*args, **kwargs):
+        return run_simple('0.0.0.0', int(os.environ.get('PORT', 5000)), app, *args, **kwargs)
+
+    return run(event, context)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5001))
