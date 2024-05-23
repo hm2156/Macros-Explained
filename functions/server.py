@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template,  redirect, url_for
+import os
 from flask import Response, request, jsonify
 
 app = Flask(__name__)
@@ -228,5 +229,10 @@ def quiz_result():
 	return render_template('quiz_result.html', score=score, total_questions=len(quiz_questions), quiz_results=quiz_results)
 
 
+def handler(event, context):
+    from netlify_wsgi import make_handler
+    return make_handler(app)(event, context)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5001))
+    app.run(host='0.0.0.0', port=port)
