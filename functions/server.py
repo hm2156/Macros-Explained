@@ -1,9 +1,11 @@
 from flask import Flask
 from flask import render_template,  redirect, url_for
 import os
+from flask_cors import CORS
 from flask import Response, request, jsonify
 
 app = Flask(__name__)
+CORS(app)
 
 macros= [
   {
@@ -230,8 +232,15 @@ def quiz_result():
 
 
 def handler(event, context):
-    from netlify_wsgi import make_handler
-    return make_handler(app)(event, context)
+    from werkzeug.serving import run_simple
+    from werkzeug.wsgi import DispatcherMiddleware
+    from werkzeug.middleware.proxy_fix import ProxyFix
+    from werkzeug.middleware.dispatcher import DispatcherMiddleware
+
+    app.wsgi_app = DispatcherMiddleware(app)
+    app.wsgi_app = ProxyFix(app.wsgi_app)
+
+    return run_simple('0.0.0.0', int(os.environ.get('PORT', 5000)), app)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5001))
