@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/hudamarta/Desktop/macros explained/venv/bin/python3" "$0" "$@"
+'''exec' "/Users/hudamarta/Desktop/macros explained/venv/bin/python" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
